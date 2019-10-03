@@ -1,0 +1,21 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">新規スレッドを作成</h1>
+
+    <%= form_tag("/topic/save_topic") do %>
+    <div class="form">
+      <div class="form-body">
+        <p>
+        タイトル
+        <textarea name="title"></textarea>
+        </p>
+        <p>
+        本文
+        <textarea name="title_topic"></textarea>
+        </p>
+        <input type="submit" value="投稿">
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
