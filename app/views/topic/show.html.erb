@@ -1,0 +1,21 @@
+<div class="main topics-show">
+  <div class="container">
+    <div class="topics-show-item">
+      <p>
+        作成日時<%= @topic.created_at%> ID：<%= @topic.user_id%>
+      </p>
+      <p>
+        <%= @topic.title %>
+      </p>
+      <p>
+        <%= @topic.title_topic %>
+      </p>
+      <div class="topic-time">
+        <!-- @topicのcreated_atカラムのデータを表示してください -->
+        <%= link_to("戻る", "/")  %>
+        <%= link_to("編集", "/topic/edit/#{@topic.topic_id}") %>
+        <%= link_to("削除", "/topic/delete/#{@topic.topic_id}") %>
+      </div>
+    </div>
+  </div>
+</div>

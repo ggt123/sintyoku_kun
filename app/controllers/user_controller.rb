@@ -24,4 +24,5 @@ def error_view
     session[:user_id] = nil
     redirect_to("/")
 end
+
 end
