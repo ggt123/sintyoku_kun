@@ -1,5 +1,23 @@
-<h1>Topic#top</h1>
+<h1>進捗くん１号</h1>
 <p>テストページ</p>
 
 <%= link_to("新規スレッドを作成", "/topic/create") %>
 <%= link_to("セッションクリア", "/user/error_view") %>
+
+<div class="main topics-index">
+  <div class="container">
+    <% @topics.each do |topic| %>
+      <div class="topics-index-item">
+        <p>
+        作成日時<%= topic.created_at%> ID：<%= topic.user_id%>
+        </p>
+        <p>
+               <%= link_to topic.title, "/topic/#{topic.topic_id}" %>
+        </p>
+        <p>
+                <%= topic.title_topic%>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

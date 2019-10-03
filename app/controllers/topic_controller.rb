@@ -1,6 +1,11 @@
 class TopicController < ApplicationController
 
   def top
+    @topics = Topic.all
+  end
+
+  def show
+    @topic = Topic.find_by(topic_id: params[:id])
   end
 
 #セッションがあるかどうか（過去に使ったことがあるかどうか）を判別する
@@ -23,8 +28,47 @@ class TopicController < ApplicationController
       image_id: params[:image],
       title:    params[:title],
       title_topic: params[:title_topic],
-      user_id:  @user.user_id
+      user_id:  @user.user_id,
+      topic_id: (0...8).map{ (65 + rand(26)).chr }.join
     )
+
+    if @topic.save
+      flash[:notice] = "スレッドを作成しました"
+      redirect_to("/")
+    else
+      flash[:notice] = "スレッドの作成に失敗しました"
+      render("/topic/create_topic")
+    end
+  end
+
+  def edit
+    @topic = Topic.find_by(topic_id: params[:id])
+  end
+
+  def save
+    @topic = Topic.find_by(topic_id: params[:id])
+    @topic.title = params[:title]
+    @topic.title_topic = params[:title_topic]
+
+    if @topic.save
+      flash[:notice] = "スレッドの変更を保存しました"
+      redirect_to("/")
+    else
+      flash[:notice] = "変更に失敗しました"
+      render("/topic/edit")
+    end
+  end
+
+  def destroy
+    @topic = Topic.find_by(topic_id: params[:id])
+
+    if @topic.destroy
+      flash[:notice] = "スレッドを削除しました"
+      redirect_to("/")
+    else
+      flash[:notice] = "削除に失敗しました"
+      redirect_to("/topic/#{@topic.topic_id}")
+    end
   end
 
 end
