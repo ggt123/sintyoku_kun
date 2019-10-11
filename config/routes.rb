@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #Userコントローラ
+  
+
+
   #Topicコントローラ
   get '/' => 'topic#top'
   get 'topic/create' => 'topic#before_create_session_check'
