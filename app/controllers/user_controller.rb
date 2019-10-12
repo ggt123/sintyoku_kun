@@ -1,5 +1,13 @@
 class UserController < ApplicationController
 
+  def top
+    @user = User.find_by(session_id: session[:user_id])
+    if @user
+       @topics = Topic.where(user_id: @user.user_id)
+    else
+      @notice = "未登録"
+    end
+  end
 #セッションを渡して匿名ユーザーをデータベースに登録する
 def give_session
   session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join

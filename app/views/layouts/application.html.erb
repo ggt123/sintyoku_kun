@@ -7,14 +7,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="header">
+      <%= link_to("進捗くん", "/")%>
+      <%= link_to("ユーザー", "/user")%>
+    </div>
   </head>
 
-  <body>
-    <% if flash[:notice]%>
-  <div class="flash">
-    メッセージ：<%= flash[:notice] %>
-  </div>
-<% end %>
-    <%= yield %>
+    <body>
+      <% if flash[:notice]%>
+      <div class="flash">
+        メッセージ：<%= flash[:notice] %>
+      </div>
+      <% end %>
+      <%= yield %>
   </body>
 </html>
