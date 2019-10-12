@@ -8,6 +8,26 @@ class UserController < ApplicationController
       @notice = "未登録"
     end
   end
+
+  def user_create
+  end
+
+  def user_save
+    session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join
+    @session_id = session[:user_id]
+
+    @user_id = (0...8).map{ (65 + rand(26)).chr }.join
+    @user = [
+      session_id: @session_id,
+      user_id: @user_id,
+
+      have_account: true,
+      name: params[:name],
+      email: params[:email],
+      password: params[:password]
+    ]
+  end
+
 #セッションを渡して匿名ユーザーをデータベースに登録する
 def give_session
   session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join
