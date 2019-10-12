@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   #Userコントローラ
   get '/user' => 'user#top'
+  get '/user/user_create' => 'user#user_create'
+  post '/user/user_save' => 'user#user_save'
 
 
   #Topicコントローラ
