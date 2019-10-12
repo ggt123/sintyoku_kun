@@ -1,0 +1,29 @@
+<h1>ユーザー管理画面</h1>
+
+<% if @user %>
+<p>あなたのID：<%= @user.user_id %></p>
+<% if @user.have_account %>
+ <p>ユーザー名：<%=@user.name%></p>
+<% end %>
+ <p>あなたの投稿</p>
+ <% else %>
+  <p><%=@notice%></p>
+<% end %>
+
+<div class="main topics-index">
+  <div class="container">
+    <% if @topics %>
+    <% @topics.each do |topic| %>
+      <div class="topics-index-item">
+        <p>
+        作成日時<%= topic.created_at%> ID：<%= topic.user_id%>
+        </p>
+        <p>
+               <%= link_to topic.title, "/topic/#{topic.topic_id}" %>
+        </p>
+        <p>
+                <%= topic.title_topic%>
+        </p>
+      </div>
+      <% end %>
+    <% end %>

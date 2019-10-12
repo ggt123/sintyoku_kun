@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #Userコントローラ
-  
+  get '/user' => 'user#top'
 
 
   #Topicコントローラ
