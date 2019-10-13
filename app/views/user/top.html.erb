@@ -3,6 +3,7 @@
 <% if @user %>
 <% if @user.have_account %>
  <p>ユーザー名：<%=@user.name%></p>
+<%= link_to("編集", "/user/user_edit/#{@user.user_id}", {method: "post"})%>
  <% else %>
  <p>あなたのID：<%= @user.user_id %></p>
  あなたは匿名ユーザーです

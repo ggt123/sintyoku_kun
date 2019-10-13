@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get '/user' => 'user#top'
   get '/user/user_create' => 'user#user_create'
   post '/user/user_save' => 'user#user_save'
-
+  post '/user/user_edit/:id' => 'user#edit'
+  post 'user/edit_save/:id' => 'user#edit_save'
+  post 'user/user_destroy/:id' => 'user#edit_destroy'
 
   #Topicコントローラ
   get '/' => 'topic#top'

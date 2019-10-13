@@ -1,0 +1,19 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">ユーザー情報の編集</div>
+    <%= form_tag("/user/edit_save/#{@user.user_id}") do %>
+    <div class="form users-form">
+      <div class="form-body">
+        <p>ユーザー名</p>
+        <!-- nameを初期値として表示してください -->
+        <textarea name="name"><%= @user.name %></textarea>
+        <p>メールアドレス</p>
+        <!-- emailを初期値として表示してください -->
+        <textarea name="email"><%= @user.email %></textarea>
+        <%= link_to("削除", "/user/user_destroy/#{@user.user_id}", {method: "post"})%>
+        <input type="submit" value="保存">
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

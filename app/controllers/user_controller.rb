@@ -34,7 +34,42 @@ class UserController < ApplicationController
       flash[:notice] = "ユーザー登録に失敗しました"
       redirect_to("/user/error_view")
     end
+  end
 
+  def edit
+    @user = User.find_by(user_id: params[:id])
+  end
+
+  def edit_save
+    @user = User.find_by(user_id: params[:id])
+    @user.name= params[:name]
+    @user.email= params[:email]
+
+
+    @topic = Topic.find_by(user_id: @user.user_id)
+    @topic.user_name = params[:name]
+
+    if @user.save && @topic.save
+      flash[:notice] = "ユーザー情報を保存しました"
+      redirect_to("/user")
+    else
+      flash[:notice] = "保存に失敗しました"
+      render("/user/edit")
+    end
+  end
+
+  def edit_destroy
+    @user = User.find_by(user_id: params[:id])
+    @topic = Topic.where(user_id: params[:id])
+    @topic.destroy_all
+
+    if @user.destroy
+      flash[:notice] = "ユーザー情報およびスレッドを削除しました"
+      redirect_to("/user")
+    else
+      flash[:notice] = "削除に失敗しました"
+      render("/user/edit")
+    end
   end
 
 #セッションを渡して匿名ユーザーをデータベースに登録する
