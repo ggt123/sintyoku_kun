@@ -2,7 +2,12 @@
   <div class="container">
     <div class="topics-show-item">
       <p>
-        作成日時<%= @topic.created_at%> ID：<%= @topic.user_id%>
+        作成日時<%= @topic.created_at%>
+        <% if @topic.user_name %>
+        BY:<%= @topic.user_name %>
+        <% else %>
+        ID：<%= @topic.user_id%>
+        <% end %>
       </p>
       <p>
         <%= @topic.title %>

@@ -1,11 +1,10 @@
 <h1>ユーザー管理画面</h1>
 
 <% if @user %>
-<p>あなたのID：<%= @user.user_id %></p>
-
 <% if @user.have_account %>
  <p>ユーザー名：<%=@user.name%></p>
  <% else %>
+ <p>あなたのID：<%= @user.user_id %></p>
  あなたは匿名ユーザーです
   <%= link_to("ユーザー登録", "/user/user_create")%>
   <p>※ユーザー登録前の情報は引き継がれません</p>
@@ -23,7 +22,12 @@
     <% @topics.each do |topic| %>
       <div class="topics-index-item">
         <p>
-        作成日時<%= topic.created_at%> ID：<%= topic.user_id%>
+        作成日時<%= topic.created_at%>
+        <% if @user.have_account %>
+        BY:<%= @user.name %>
+        <% else %>
+        ID：<%= @user.user_id%>
+        <% end %>
         </p>
         <p>
                <%= link_to topic.title, "/topic/#{topic.topic_id}" %>

@@ -17,7 +17,7 @@ class UserController < ApplicationController
     @session_id = session[:user_id]
 
     @user_id = (0...8).map{ (65 + rand(26)).chr }.join
-    @user = [
+    @user = User.new(
       session_id: @session_id,
       user_id: @user_id,
 
@@ -25,7 +25,16 @@ class UserController < ApplicationController
       name: params[:name],
       email: params[:email],
       password: params[:password]
-    ]
+    )
+    if @user.save
+      flash[:notice] = "ユーザーを登録しました"
+      redirect_to("/user")
+    else
+      #無限ループ処理の脱出
+      flash[:notice] = "ユーザー登録に失敗しました"
+      redirect_to("/user/error_view")
+    end
+
   end
 
 #セッションを渡して匿名ユーザーをデータベースに登録する
@@ -44,7 +53,7 @@ def give_session
     redirect_to("/topic/create")
   else
     #無限ループ処理の脱出
-    redirect_to("/user/error_view")
+    redirect_to("/user/create")
   end
 end
 

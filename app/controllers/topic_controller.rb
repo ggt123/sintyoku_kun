@@ -1,11 +1,13 @@
 class TopicController < ApplicationController
 
   def top
-    @topics = Topic.all
+    @topics = Topic.all.order(created_at: :desc)
+    @user = User.find_by(session_id: session[:user_id])
   end
 
   def show
     @topic = Topic.find_by(topic_id: params[:id])
+    @user = User.find_by(session_id: session[:user_id])
   end
 
 #セッションがあるかどうか（過去に使ったことがあるかどうか）を判別する
@@ -29,7 +31,8 @@ class TopicController < ApplicationController
       title:    params[:title],
       title_topic: params[:title_topic],
       user_id:  @user.user_id,
-      topic_id: (0...8).map{ (65 + rand(26)).chr }.join
+      topic_id: (0...8).map{ (65 + rand(26)).chr }.join,
+      user_name: @user.name
     )
 
     if @topic.save
