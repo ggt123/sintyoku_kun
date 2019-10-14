@@ -3,7 +3,7 @@ class UserController < ApplicationController
   def top
     @user = User.find_by(session_id: session[:user_id])
     if @user
-       @topics = Topic.where(user_id: @user.user_id) .order(created_at: :desc)
+       @topics = Topic.where(user_id: @user.user_id).order(created_at: :desc)
     else
       @notice = "未登録"
     end
@@ -49,6 +49,10 @@ class UserController < ApplicationController
     if @topics = Topic.where(user_id: @user.user_id)
     @topics.update_all(user_name: @user.name)
   end
+
+  if @comments = Comment.where(user_id: @user.user_id)
+  @comments.update_all(user_name: @user.name)
+end
 
     if @user.save
       flash[:notice] = "ユーザー情報を保存しました"

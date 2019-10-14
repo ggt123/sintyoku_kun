@@ -16,9 +16,11 @@
         <%= @topic.title_topic %>
       </p>
       <p>
-        このスレッドのURL：
+        この進捗のURL：
         localhost:3000/topic/<%= @topic.topic_id %>
       </p>
+        <p>_________________________________________________________________
+        </p>
       <div class="topic-time">
         <!-- @topicのcreated_atカラムのデータを表示してください -->
         <%= link_to("戻る", "/")  %>
@@ -33,7 +35,13 @@
   <div class="container">
     <% @comments.each do |comment| %>
       <div class="comments-index-item">
-        <%= link_to comments.topic, "/comments/#{comments.id}" %>
+        作成日時<%= comment.created_at%>
+        <% if comment.user_name %>
+        BY:<%= comment.user_name %>
+        <% else %>
+        ID：<%= comment.user_id%>
+        <% end %>
+        <p><%= comment.topic%></p>
       </div>
     <% end %>
   </div>

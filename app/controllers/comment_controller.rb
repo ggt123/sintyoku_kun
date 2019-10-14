@@ -4,7 +4,7 @@ class CommentController < ApplicationController
   end
 
   def save
-    if session[:user_id] == true
+    if session[:user_id]
       @user = User.find_by(session_id: session[:user_id])
     else
       session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join
@@ -19,13 +19,20 @@ class CommentController < ApplicationController
     end
 
     @user = User.find_by(session_id: session[:user_id])
-    @comment = [
+    @comment = Comment.new(
       topic_id: params[:id],
       image_id: params[:image_id],
       topic:    params[:topic],
       user_id:  @user.user_id,
       user_name: @user.name
+    )
 
-    ]
+    if @comment.save
+    flash[:notice] = 'コメントを投稿しました'
+    redirect_to("/topic/#{@comment.topic_id}")
+  else
+    flash[:notice] = "問題が発生しました"
+    render("/comment/create/#{@comment.topic_id}")
   end
+end
 end
