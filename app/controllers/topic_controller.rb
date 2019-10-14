@@ -1,8 +1,10 @@
 class TopicController < ApplicationController
 
   def top
+    if Topic.all
     @topics = Topic.all.order(created_at: :desc)
     @user = User.find_by(session_id: session[:user_id])
+    end
   end
 
   def show
