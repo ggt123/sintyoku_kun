@@ -38,3 +38,5 @@ group :development, :test do
   gem 'hirb'
   gem 'hirb-unicode'
 end
+
+gem 'bootsnap', require: false
