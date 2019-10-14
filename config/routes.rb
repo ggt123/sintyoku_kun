@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #Commentコントローラ
+  post 'comment/create/:id' => 'comment#create'
+  post 'comment/save/:id' => 'comment#save'
+
   #Userコントローラ
   get '/user' => 'user#top'
   get '/user/user_create' => 'user#user_create'

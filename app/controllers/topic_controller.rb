@@ -8,6 +8,8 @@ class TopicController < ApplicationController
   def show
     @topic = Topic.find_by(topic_id: params[:id])
     @user = User.find_by(session_id: session[:user_id])
+    @comments = Comment.where(topic_id: params[:id])
+    @notice = "コメントはまだありません"
   end
 
 #セッションがあるかどうか（過去に使ったことがあるかどうか）を判別する
@@ -22,7 +24,7 @@ class TopicController < ApplicationController
   def create_topic
   end
 
-#新しいトピックを保存する　（今回は確認のためにビューファイルへ出力する）
+#新しいトピックを保存する
   def save_topic
     @user = User.find_by(session_id: session[:user_id])
 

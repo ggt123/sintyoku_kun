@@ -15,12 +15,32 @@
       <p>
         <%= @topic.title_topic %>
       </p>
+      <p>
+        このスレッドのURL：
+        localhost:3000/topic/<%= @topic.topic_id %>
+      </p>
       <div class="topic-time">
         <!-- @topicのcreated_atカラムのデータを表示してください -->
         <%= link_to("戻る", "/")  %>
         <%= link_to("編集", "/topic/edit/#{@topic.topic_id}") %>
         <%= link_to("削除", "/topic/delete/#{@topic.topic_id}") %>
       </div>
+
+      <%= link_to("コメントを投稿する", "/comment/create/#{@topic.topic_id}", {method: "post"}) %>
+
+<% if @comments %>
+      <div class="main commentss-index">
+  <div class="container">
+    <% @comments.each do |comment| %>
+      <div class="comments-index-item">
+        <%= link_to comments.topic, "/comments/#{comments.id}" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% else %>
+<%= @notice %>
+<% end %>
     </div>
   </div>
 </div>

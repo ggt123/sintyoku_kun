@@ -1,0 +1,14 @@
+<h1>コメントを投稿する</h1>
+
+<div class="main posts-new">
+  <div class="container">
+<%= form_tag("/comment/save/#{@topic_id}", {method: "post"}) do %>
+    <div class="form">
+      <div class="form-body">
+        <textarea name="topic"></textarea>
+        <input type="submit" value="投稿">
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
