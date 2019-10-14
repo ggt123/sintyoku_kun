@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
@@ -19,6 +20,14 @@ group :development do
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.0.2'
   gem 'spring-watcher-listen', '2.0.1'
+end
+
+group :test do
+  gem 'rails-controller-testing', '1.0.2'
+  gem 'minitest',                 '5.10.3'
+  gem 'minitest-reporters',       '1.1.14'
+  gem 'guard',                    '2.13.0'
+  gem 'guard-minitest',           '2.4.4'
 end
 
 group :production do
