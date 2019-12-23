@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   post 'comment/save/:id' => 'comment#save'
 
   #Userコントローラ
-  get '/user' => 'user#top'
-  get '/user/user_create' => 'user#user_create'
-  post '/user/user_save' => 'user#user_save'
-  post '/user/user_edit/:id' => 'user#edit'
-  post 'user/edit_save/:id' => 'user#edit_save'
-  post 'user/user_destroy/:id' => 'user#edit_destroy'
+  get   '/user' => 'user#top'
+  get   '/user/user_create' => 'user#user_create'
+  post  '/user/user_save' => 'user#user_save'
+  get   'login' => 'user#login'
+  post  '/user/user_edit/:id' => 'user#edit'
+  post  'user/edit_save/:id' => 'user#edit_save'
+  post  'user/user_destroy/:id' => 'user#edit_destroy'
 
   #Topicコントローラ
   get '/' => 'topic#top'

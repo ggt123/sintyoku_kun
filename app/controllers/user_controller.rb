@@ -12,11 +12,21 @@ class UserController < ApplicationController
   def user_create
   end
 
+  def login
+  end
+
   def user_save
     session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join
     @session_id = session[:user_id]
-
     @user_id = (0...8).map{ (65 + rand(26)).chr }.join
+
+    if params[:password1] == params[:password2]
+      @password = params[:password1]
+    else
+      flash[:notice] = "エラー：パスワードが一致しません"
+      redirect_to("/user") and return
+    end
+
     @user = User.new(
       session_id: @session_id,
       user_id: @user_id,
@@ -24,8 +34,9 @@ class UserController < ApplicationController
       have_account: true,
       name: params[:name],
       email: params[:email],
-      password: params[:password]
+      password: params[@password]
     )
+
     if @user.save
       flash[:notice] = "ユーザーを登録しました"
       redirect_to("/user")
