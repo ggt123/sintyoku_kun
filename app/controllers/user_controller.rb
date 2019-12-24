@@ -58,12 +58,12 @@ class UserController < ApplicationController
 
 
     if @topics = Topic.where(user_id: @user.user_id)
-    @topics.update_all(user_name: @user.name)
-  end
+        @topics.update_all(user_name: @user.name)
+    end
 
-  if @comments = Comment.where(user_id: @user.user_id)
-  @comments.update_all(user_name: @user.name)
-end
+    if @comments = Comment.where(user_id: @user.user_id)
+        @comments.update_all(user_name: @user.name)
+    end
 
     if @user.save
       flash[:notice] = "ユーザー情報を保存しました"

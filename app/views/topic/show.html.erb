@@ -41,7 +41,7 @@
         <% else %>
         ID：<%= comment.user_id%>
         <% end %>
-        <p><%= comment.topic%></p>
+        <p><%= simple_format(comment.topic) %></p>
       </div>
     <% end %>
   </div>

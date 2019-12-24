@@ -5,7 +5,7 @@
 <%= form_tag("/comment/save/#{@topic_id}", {method: "post"}) do %>
     <div class="form">
       <div class="form-body">
-        <textarea name="topic"></textarea>
+        <textarea name="topic" cols="50" rows="10"></textarea>
         <input type="submit" value="投稿">
       </div>
     </div>
