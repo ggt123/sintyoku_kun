@@ -1,10 +1,8 @@
 class TopicController < ApplicationController
 
   def top
-    if Topic.all
     @topics = Topic.all.order(created_at: :desc)
     @user = User.find_by(session_id: session[:user_id])
-    end
   end
 
   def show
@@ -68,11 +66,9 @@ class TopicController < ApplicationController
 
   def destroy
     @topic = Topic.find_by(topic_id: params[:id])
-    @comments = Comment.where(topic_id: params[:id])
-    @comments.destroy_all
 
     if @topic.destroy
-      flash[:notice] = "スレッドおよびコメントを削除しました"
+      flash[:notice] = "スレッドを削除しました"
       redirect_to("/")
     else
       flash[:notice] = "削除に失敗しました"
