@@ -13,6 +13,7 @@ class UserController < ApplicationController
   end
 
   def login
+      @user = User.find_by(session_id: session[:user_id])
   end
 
   def login_check
@@ -22,12 +23,12 @@ class UserController < ApplicationController
           flash[:notice] = "ログインしました！"
           redirect_to("/")
         else
-          flash[:notice] = "嘘ついてんじゃねーぞハゲ"
-          redirect_to("/")
+          flash[:notice] = "ログインに失敗しました"
+          redirect_to("/login")
         end
       else
-         flash[:notice] = "嘘ついてんじゃねーぞクソが"
-         redirect_to("/")
+         flash[:notice] = "ログインに失敗しました"
+         redirect_to("/login")
       end
   end
 

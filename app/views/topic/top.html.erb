@@ -1,7 +1,17 @@
 <h1>進捗くん１号</h1>
-<p>テストページ</p>
-
-<%= link_to("新規スレッドを作成", "/topic/create") %>
+<br>
+<% if @user %>
+  <% if @user.have_account? == true %>
+  ようこそ！　<%= @user.name %>　さん
+  <% elsif @user.have_account == nil%>
+  ようこそ！　ID:<%= @user.user_id %>　さん
+  <% end %>
+<% else %>
+ようこそ！　匿名ユーザー　さん
+<% end %>
+<br>
+<p><%= link_to("新規スレッドを作成", "/topic/create") %></p>
+<p>_________________________________________________________________</p>
 
 <div class="main topics-index">
   <div class="container">

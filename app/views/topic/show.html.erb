@@ -24,8 +24,12 @@
       <div class="topic-time">
         <!-- @topicのcreated_atカラムのデータを表示してください -->
         <%= link_to("戻る", "/")  %>
-        <%= link_to("編集", "/topic/edit/#{@topic.topic_id}") %>
-        <%= link_to("削除", "/topic/delete/#{@topic.topic_id}") %>
+        <% if @user %>
+          <% if @user.user_id == @topic.user_id %>
+          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}") %>
+          <%= link_to("削除", "/topic/delete/#{@topic.topic_id}") %>
+          <% end %>
+        <% end %>
       </div>
 
       <%= link_to("コメントを投稿する", "/comment/create/#{@topic.topic_id}", {method: "post"}) %>

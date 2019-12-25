@@ -9,10 +9,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <div class="header">
+
       <%= link_to("進捗くん", "/")%>
       <%= link_to("ユーザー", "/user")%>
-      <%= link_to("ログイン", "/login")%>
-      <%= link_to("ログアウト", "/logout_question")%>
+
+    <% if @user %>
+      <% if @user.have_account? == true %>
+      <%= link_to("ログアウト", "/logout_question") %>
+      <% else %>
+      <%= link_to("ログイン", "/login") %>
+      <% end %>
+
+     <% else %>
+    <%= link_to("ログイン", "/login") %>
+    <% end %>
+
+
+
     </div>
   </head>
 
