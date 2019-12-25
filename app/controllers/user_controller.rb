@@ -15,6 +15,22 @@ class UserController < ApplicationController
   def login
   end
 
+  def login_check
+      if @user = User.find_by(email: params[:email])
+        if params[:password] == @user.password
+          session[:user_id] = @user.session_id
+          flash[:notice] = "ログインしました！"
+          redirect_to("/")
+        else
+          flash[:notice] = "嘘ついてんじゃねーぞハゲ"
+          redirect_to("/")
+        end
+      else
+         flash[:notice] = "嘘ついてんじゃねーぞクソが"
+         redirect_to("/")
+      end
+  end
+
   def user_save
     session[:user_id] = (0...8).map{ (65 + rand(26)).chr }.join
     @session_id = session[:user_id]
@@ -34,7 +50,7 @@ class UserController < ApplicationController
       have_account: true,
       name: params[:name],
       email: params[:email],
-      password: params[@password]
+      password: @password
     )
 
     if @user.save

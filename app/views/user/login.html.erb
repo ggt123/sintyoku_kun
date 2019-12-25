@@ -1,16 +1,17 @@
 <div class="main users-new">
   <div class="container">
     <h1><div class="form-heading">ログイン</div></h1>
-    <% form_tag("/check")%>
+    <%= form_tag("/login_check") do %>
     <div class="form users-form">
       <div class="form-body">
         <p>メールアドレス</p>
-        <input>
+        <input type="text" name="email" value="">
         <p>パスワード</p>
         <!-- 以下のinputタグにtype属性を指定してください -->
-        <input>
+        <input type="password" name="password" value="">
         <input type="submit" value="ログイン">
       </div>
     </div>
+    <% end %>
   </div>
 </div>
