@@ -33,6 +33,10 @@
       <% if flash[:notice]%>
       <div class="flash">
         メッセージ：<%= flash[:notice] %>
+      <% end %>
+        <% if flash[:notice2]%>
+        <div class="flash">
+          メッセージ：<%= flash[:notice2] %>
       </div>
       <% end %>
       <%= yield %>

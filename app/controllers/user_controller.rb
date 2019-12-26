@@ -73,6 +73,14 @@ class UserController < ApplicationController
     @user.name= params[:name]
     @user.email= params[:email]
 
+      if @user.password == params[:old_password] && params[:new_password1] == params[:new_password2]
+         @user.password = params[:new_password1]
+         flash[:notice2] = "パスワードを変更しました"
+      elsif @user.password != params[:old_password]
+         flash[:notice2] = "パスワードは変更されていません"
+      elsif params[:new_password1] != params[:new_password2]
+        flash[:notice2] = "パスワードは変更されていません"
+      end
 
     if @topics = Topic.where(user_id: @user.user_id)
         @topics.update_all(user_name: @user.name)
