@@ -31,7 +31,9 @@
         <% end %>
         </p>
         <p>
-               <%= link_to topic.title, "/topic/#{topic.topic_id}" %>
+          <% @comments = Comment.where(topic_id: topic.topic_id)%>
+          <% comment_size = @comments.size %>
+          <%= link_to "#{topic.title}(#{comment_size})", "/topic/#{topic.topic_id}" %>
         </p>
         <p>
                 <%= topic.title_topic%>

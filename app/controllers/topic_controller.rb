@@ -2,14 +2,15 @@ class TopicController < ApplicationController
 
   def top
     @topics = Topic.all.order(created_at: :desc)
+    @comments = Comment.all
     @user = User.find_by(session_id: session[:user_id])
   end
 
   def show
     @topic = Topic.find_by(topic_id: params[:id])
     @user = User.find_by(session_id: session[:user_id])
-    comments = Comment.where(topic_id: params[:id])
-    @comments = comments.order(created_at: :desc)
+    @comments = Comment.where(topic_id: params[:id])
+    # @comments = comments.order(created_at: :desc)
     @notice = "コメントはまだありません"
   end
 

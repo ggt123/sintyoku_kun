@@ -37,8 +37,10 @@
 <% if @comments %>
       <div class="main commentss-index">
   <div class="container">
-    <% @comments.each do |comment| %>
+    <% all_comments = @comments.reverse %>
+    <% all_comments.each do |comment| %>
       <div class="comments-index-item">
+        [<%= @comments.index(comment) + 1 %>]
         作成日時<%= comment.created_at%>
         <% if comment.user_name %>
         BY:<%= comment.user_name %>
@@ -53,6 +55,5 @@
 <% else %>
 <%= @notice %>
 <% end %>
-    </div>
   </div>
 </div>
