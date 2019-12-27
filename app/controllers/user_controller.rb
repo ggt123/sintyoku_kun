@@ -54,7 +54,11 @@ class UserController < ApplicationController
       password: @password
     )
 
-    if @user.save
+    if @user.name.length < 3  || @user.email.length < 3 || @user.password.length < 3
+      flash[:notice] = "3文字以上入力してください"
+      render("/user/user_create")
+
+    elsif @user.save
       flash[:notice] = "ユーザーを登録しました"
       redirect_to("/user")
     else
@@ -123,13 +127,13 @@ class UserController < ApplicationController
       session_id: @session_id,
       user_id: @user_id,
     )
-    @user.save
 
-  if @user.session_id
+
+  if @user.save
     redirect_to("/topic/create")
   else
     #無限ループ処理の脱出
-    redirect_to("/user/create")
+    redirect_to("/")
   end
   end
 

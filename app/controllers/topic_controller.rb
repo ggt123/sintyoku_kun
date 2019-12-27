@@ -38,8 +38,11 @@ class TopicController < ApplicationController
       topic_id: (0...8).map{ (65 + rand(26)).chr }.join,
       user_name: @user.name
     )
-
-    if @topic.save
+    #バリデーション
+    if @topic.title.length < 3
+      flash[:notice] = "３文字以上入力してください"
+      render("/topic/create_topic")
+    elsif @topic.save
       flash[:notice] = "スレッドを作成しました"
       redirect_to("/")
     else
