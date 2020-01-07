@@ -1,16 +1,16 @@
 <div class="main topics-edit">
   <div class="container">
-    <div class="form-heading">スレッドの編集</div>
+    <h1 class="form-heading">スレッドの編集</h1>
 
 <%= form_tag("/topic/save/#{@topic.topic_id}") do %>
     <div class="form topics-form">
       <div class="form-body">
         <p>
-        タイトル
+        タイトル<br>
         <textarea name="title"><%= @topic.title %></textarea>
         </p>
         <p>
-        本文
+        本文<br>
         <textarea name="title_topic"><%= @topic.title_topic %></textarea>
         </p>
         <input type="submit" value="保存">

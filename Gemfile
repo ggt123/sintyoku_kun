@@ -66,3 +66,5 @@ group :development, :test do
   gem 'hirb'
   gem 'hirb-unicode'
 end
+
+gem 'rails-i18n'

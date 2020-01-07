@@ -1,34 +1,30 @@
 Rails.application.routes.draw do
 
-  #Commentコントローラ
-  post 'comment/create/:id' => 'comment#create'
-  post 'comment/save/:id' => 'comment#save'
+get   '/'                   =>  'topic#top'
+get   '/topic/create_topic' =>  'topic#create_topic'
+get   '/topic/create_anonymous_user' => 'topic#create_anonymous_user'
+post  '/topic/save_topic'   =>  'topic#save_topic'
+get   '/topic/:id'          =>  'topic#show'
+post  '/topic/edit/:id'     =>  'topic#edit'
+post  '/topic/delete/:id'   =>  'topic#delete_topic'
+post  '/topic/save/:id'     =>  'topic#save'
 
-  #Userコントローラ
-  get   '/user' => 'user#top'
-  get   '/user/user_create' => 'user#user_create'
-  post  '/user/user_save' => 'user#user_save'
-  get   'login' => 'user#login'
-  post  'login_check' => 'user#login_check'
-  get   'logout_question' => 'user#logout_question'
-  get   'logout' => 'user#logout'
-  post  '/user/user_edit/:id' => 'user#edit'
-  post  'user/edit_save/:id' => 'user#edit_save'
-  post  'user/user_destroy/:id' => 'user#edit_destroy'
+get   '/user'               =>  'user#top'
 
-  #Topicコントローラ
-  get '/' => 'topic#top'
-  get 'topic/create' => 'topic#before_create_session_check'
-  get 'topic/create_topic' => 'topic#create_topic'
+post  '/comment/create_comment/:id' =>  'comment#create_comment'
+get   '/comment/create_anonymous_user' => 'comment#create_anonymous_user'
+post  '/comment/save_comment/:id' => 'comment#save_comment'
 
-  get '/topic/edit/:id' => 'topic#edit'
-  post '/topic/save/:id' => 'topic#save'
+get   '/login'              =>    'user#login'
+post  '/login_check'        =>    'user#login_check'
+get   '/user_create'        =>    'user#user_create'
+post  '/user_save'          =>    'user#user_save'
+get   '/user/create_anonymous_user'   =>  'user#create_anonymous_user'
+get   '/logout_question'    =>    'user#logout_question'
+get   '/logout'             =>    'user#logout'
+get   '/edit'               =>    'user#edit'
+post  '/user/edit_save/:id' => 'user#edit_save'
+post  '/user/user_destroy_question/:id'  =>  'user#user_destroy_question'
+post  '/user_destroy/:id'   =>    'user#user_destroy'
 
-  get '/topic/delete/:id' => 'topic#destroy'
-  get 'topic/:id' => 'topic#show'
-  post "topic/save_topic" => "topic#save_topic"
-
-  get '/user/give_session' => 'user#give_session'
-  get '/user/error_view' => 'user#error_view'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

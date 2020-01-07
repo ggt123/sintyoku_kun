@@ -11,18 +11,17 @@
     <div class="header">
 
       <%= link_to("進捗くん", "/")%>
-      <%= link_to("ユーザー", "/user")%>
 
-    <% if @user %>
-      <% if @user.have_account? == true %>
+      <% if @named_user %>
+      <%= link_to("ユーザー", "/user")%>
+      <%= link_to("編集", "/edit") %>
       <%= link_to("ログアウト", "/logout_question") %>
+
       <% else %>
+      <%= link_to("ユーザー", "/user")%>
       <%= link_to("ログイン", "/login") %>
       <% end %>
 
-     <% else %>
-    <%= link_to("ログイン", "/login") %>
-    <% end %>
 
 
 
@@ -30,15 +29,30 @@
   </head>
 
     <body>
-      <% if flash[:notice]%>
+      <% if flash[:notice] %>
       <div class="flash">
         メッセージ：<%= flash[:notice] %>
-      <% end %>
-        <% if flash[:notice2]%>
-        <div class="flash">
-          メッセージ：<%= flash[:notice2] %>
       </div>
       <% end %>
+
+      <% if flash[:notice2] %>
+      <div class="flash">
+        ※<%= flash[:notice2] %>
+      </div>
+      <% end %>
+
+    <% if @topic %>
+      <% if @topic.errors.any? %>
+  <div id="error_explanation">
+    <%= @topic.errors.count %>件のエラーがあります:
+    <% @topic.errors.full_messages.each do |msg| %>
+    <%= msg %>
+    <% end %>
+  </div>
+<% end %>
+<% end %>
+
+
       <%= yield %>
   </body>
 </html>

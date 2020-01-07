@@ -1,16 +1,17 @@
 <h1>進捗くん１号</h1>
 <br>
-<% if @user %>
-  <% if @user.have_account? == true %>
-  ようこそ！　<%= @user.name %>　さん
-  <% elsif @user.have_account == nil%>
-  ようこそ！　ID:<%= @user.user_id %>　さん
-  <% end %>
+<%if @named_user || @anonymous_user %>
+<% if @named_user %>
+ようこそ！　<%= @named_user.name %>　さん
+<% elsif @anonymous_user %>
+ようこそ！　<%= @anonymous_user.user_id %>　さん
+<% end %>
 <% else %>
 ようこそ！　匿名ユーザー　さん
 <% end %>
+
 <br>
-<p><%= link_to("新規スレッドを作成", "/topic/create") %></p>
+<p><%= link_to("新規トピックを作成", "/topic/create_topic") %></p>
 <p>_________________________________________________________________</p>
 
 <div class="main topics-index">
@@ -18,7 +19,7 @@
     <% @topics.each do |topic| %>
       <div class="topics-index-item">
         <p>
-        作成日時<%= topic.created_at%>
+        作成日時<%= topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
         <% if topic.user_name %>
         BY:<%= topic.user_name %>
         <% else %>
@@ -26,8 +27,8 @@
         <% end %>
         </p>
         <p>
-          <% @comments = Comment.where(topic_id: topic.topic_id)%>
-          <% comment_size = @comments.size %>
+          <% comment = Comment.where(topic_id: topic.topic_id)%>
+          <% comment_size = comment.size %>
           <%= link_to "#{topic.title}(#{comment_size})", "/topic/#{topic.topic_id}" %>
 
         </p>

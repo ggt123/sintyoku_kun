@@ -1,43 +1,82 @@
 <h1>ユーザー管理画面</h1>
-
-<% if @user %>
-<% if @user.have_account %>
- <p>ユーザー名：<%=@user.name%></p>
-<%= link_to("編集", "/user/user_edit/#{@user.user_id}", {method: "post"})%>
- <% else %>
- <p>あなたのID：<%= @user.user_id %></p>
- あなたは匿名ユーザーです
-  <%= link_to("ユーザー登録", "/user/user_create")%>
-  <p>※ユーザー登録前の情報は引き継がれません</p>
-<% end %>
- <p>あなたの投稿</p>
- <% else %>
-  <p><%=@notice%></p>
-  <%= link_to("ユーザー登録", "/user/user_create")%>
-
-<% end %>
-
-<div class="main topics-index">
-  <div class="container">
-    <% if @topics %>
-    <% @topics.each do |topic| %>
-      <div class="topics-index-item">
-        <p>
-        作成日時<%= topic.created_at%>
-        <% if @user.have_account %>
-        BY:<%= @user.name %>
-        <% else %>
-        ID：<%= @user.user_id%>
-        <% end %>
-        </p>
-        <p>
-          <% @comments = Comment.where(topic_id: topic.topic_id)%>
-          <% comment_size = @comments.size %>
-          <%= link_to "#{topic.title}(#{comment_size})", "/topic/#{topic.topic_id}" %>
-        </p>
-        <p>
-                <%= topic.title_topic%>
-        </p>
-      </div>
-      <% end %>
+<% if @named_user || @anonymous_user %>
+    <% if @named_user.present? then %>
+      ユーザー名：<%= @named_user.name %>
     <% end %>
+
+    <% if @anonymous_user.present? then %>
+      ユーザー名：<%= @anonymous_user.user_id %><br>
+      匿名ユーザーです：
+      ユーザー登録はこちら！<%= link_to("新規登録", "/user_create")%>
+    <% end %>
+
+    <% else %>
+      匿名ユーザーさん：
+      ユーザー登録はこちら！：<%= link_to("新規登録", "/user_create")%>
+<% end %>
+<br>
+_________________________________________________________________<br>
+あなたが作成したトピック一覧：<br>
+<br>
+<% if @named_user || @anonymous_user %>
+
+  <% if @named_user.present? then %>
+    <% if @topics = Topic.where(user_id: @named_user.user_id) then %>
+      <% @topics = @topics.order(created_at: :desc) %>
+        <% @topics.each do |topic| %>
+
+        作成日時<%= topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+        <% if topic.user_name %>
+          　BY:<%= topic.user_name %>
+        <% else %>
+          　ID：<%= topic.user_id%>
+        <% end %><br>
+        <%= link_to topic.title, "/topic/#{topic.topic_id}" %><br>
+        <br>
+     <% end %>
+      <% else %>
+       まだ投稿はありません<br>
+       <br>
+   　　　　　∧ ∧＿__<br>
+   　　　／(*ﾟーﾟ)／＼<br>
+   　　／|￣∪∪　 |＼／<br>
+   　　　|　　　　|／<br>
+   　　　 ￣￣￣￣<br>
+    <% end %>
+  <% end %>
+
+
+  <% if @anonymous_user.present? then %>
+      <% if @topics = Topic.where(user_id: @anonymous_user.user_id) then %>
+        <% @topics = @topics.order(created_at: :desc) %>
+          <% @topics.each do |topic| %>
+
+          作成日時<%= topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+          <% if topic.user_name %>
+            　BY:<%= topic.user_name %>
+          <% else %>
+            　ID：<%= topic.user_id%><br>
+          <% end %>
+          <%= link_to topic.title, "/topic/#{topic.topic_id}" %><br>
+          <br>
+       <% end %>
+       <% else %>
+        まだ投稿はありません<br>
+        <br>
+    　　　　　∧ ∧＿__<br>
+    　　　／(*ﾟーﾟ)／＼<br>
+    　　／|￣∪∪　 |＼／<br>
+    　　　|　　　　|／<br>
+    　　　 ￣￣￣￣<br>
+     <% end %>
+   <% end %>
+
+<% else %>
+    まだ投稿はありません<br>
+    <br>
+　　　　　∧ ∧＿__<br>
+　　　／(*ﾟーﾟ)／＼<br>
+　　／|￣∪∪　 |＼／<br>
+　　　|　　　　|／<br>
+　　　 ￣￣￣￣<br>
+<% end %>

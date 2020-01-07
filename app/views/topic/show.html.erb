@@ -22,17 +22,19 @@
         <p>_________________________________________________________________
         </p>
       <div class="topic-time">
-        <!-- @topicのcreated_atカラムのデータを表示してください -->
         <%= link_to("戻る", "/")  %>
-        <% if @user %>
-          <% if @user.user_id == @topic.user_id %>
-          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}") %>
-          <%= link_to("削除", "/topic/delete/#{@topic.topic_id}") %>
+      <% if @named_user.present? then if @named_user.user_id == @topic.user_id %>
+          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>
+          <%= link_to("削除", "/topic/delete/#{@topic.topic_id}", {method: "post"}) %>
           <% end %>
+        <% elsif @anonymous_user.present? then if @anonymous_user.user_id == @topic.user_id %>
+          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>
+          <%= link_to("削除", "/topic/delete/#{@topic.topic_id}", {method: "post"}) %>
         <% end %>
+      <% end %>
       </div>
 
-      <%= link_to("コメントを投稿する", "/comment/create/#{@topic.topic_id}", {method: "post"}) %>
+      <%= link_to("コメントを投稿する", "/comment/create_comment/#{@topic.topic_id}", {method: "post"}) %>
 
 <% if @comments %>
       <div class="main commentss-index">
@@ -50,10 +52,7 @@
         <p><%= simple_format(comment.topic) %></p>
       </div>
     <% end %>
+  <% end %>
+   </div>
   </div>
-</div>
-<% else %>
-<%= @notice %>
-<% end %>
-  </div>
-</div>
+ </div>

@@ -1,13 +1,13 @@
 <div class="main users-edit">
   <div class="container">
-    <div class="form-heading">ユーザー情報の編集</div>
-    <%= form_tag("/user/edit_save/#{@user.user_id}") do %>
+    <h2 class="form-heading">ユーザー情報の編集</h2>
+    <%= form_tag("/user/edit_save/#{@named_user.user_id}", {method: "post"}) do %>
     <div class="form users-form">
       <div class="form-body">
         <p>ユーザー名</p>
-        <textarea name="name"><%= @user.name %></textarea>
+        <textarea name="name"><%= @named_user.name %></textarea>
         <p>メールアドレス</p>
-        <textarea name="email"><%= @user.email %></textarea>
+        <textarea name="email"><%= @named_user.email %></textarea>
         <p>現在のパスワード</p>
         <input type="password" name="old_password"></input>
         <p>新しいパスワード</p>
@@ -16,7 +16,7 @@
         <input type="password" name="new_password2"></input>
         <br>
         <br>
-        <%= link_to("削除", "/user/user_destroy/#{@user.user_id}", {method: "post"})%>
+        <%= link_to("削除", "/user/user_destroy_question/#{@named_user.user_id}", {method: "post"})%>
         <input type="submit" value="保存">
       </div>
     </div>

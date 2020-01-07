@@ -1,0 +1,8 @@
+<%= @message %>
+<br>
+　　　　　∧ ∧＿__　　＜このアカウントを削除します。よろしいですか？<br>
+　　　／(*;ー;)／＼<br>
+　　／|￣∪∪　 |＼／<br>
+　　　|　　　　|／<br>
+　　　 ￣￣￣￣<br>
+<%= link_to("削除する", "/user_destroy/#{@named_user.user_id}", {method: "post"}) %>　　<%= link_to("戻る", "/")%>

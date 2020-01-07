@@ -2,7 +2,7 @@
 
 <div class="main posts-new">
   <div class="container">
-<%= form_tag("/comment/save/#{@topic_id}", {method: "post"}) do %>
+<%= form_tag("/comment/save_comment/#{@topic_id}", {method: "post"}) do %>
     <div class="form">
       <div class="form-body">
         <textarea name="topic" cols="50" rows="10"></textarea>
