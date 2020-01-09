@@ -139,7 +139,7 @@ class UserController < ApplicationController
   end
 
   def testlogin
-    @named_user = User.find_by(user_id: "ARLNMQVE")
+    @named_user = User.find_by(email: "aramaki@gmail.com")
     if session[:user_id] = @named_user.session_id
        flash[:notice] = "テストユーザーとしてログイン中です！"
        redirect_to("/")
