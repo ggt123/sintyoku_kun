@@ -1,28 +1,36 @@
-<div class="main users-new">
-  <div class="container">
-    <h1>新規ユーザー登録</h1>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="user-edit-container">
 
+      <h2 class="user-edit-title">新規ユーザー登録</h2>
     <%= form_tag("/user_save") do %>
-    <div class="form users-form">
-      <div class="form-body">
-        <p>ユーザー名</p>
-        <!-- <input>タグを用いて1行の入力フォームを作成してください -->
-        <input type="text" name="name" value="">
-
-        <p>メールアドレス</p>
-        <!-- <input>タグを用いて1行の入力フォームを作成してください -->
-        <input type="text" name="email" value="">
-
-        <p>パスワード</p>
-        <!-- <input>タグを用いて1行の入力フォームを作成してください -->
-        <input type="password" name="password1" value="">
-        <p>パスワード再入力</p>
-        <!-- <input>タグを用いて1行の入力フォームを作成してください -->
-        <input type="password" name="password2" value="">
-
-        <input type="submit" value="新規登録">
-      </div>
+    <div class="user-edit-textarea">
+      <p>
+      ユーザー名<br>
+      <textarea name="name" cols="45" rows="1"></textarea>
+      </p>
+      <p>
+      メールアドレス<br>
+      <textarea name="email" cols="45" rows="1"></textarea>
+      </p>
     </div>
+
+    <div class="user-edit-password">
+      <p>
+      パスワード<br>
+      　<input type="password" name="password1"></input>
+      </p>
+      <p>
+      パスワードを再入力<br>
+      　<input type="password" name="password2"></input>
+      </p>
+    </div>
+        <br>
+        <br>
+      　<input class="user-edit-submit-button" type="submit" value="新規登録">
     <% end %>
+
   </div>
-</div>
+ </body>
+</html>

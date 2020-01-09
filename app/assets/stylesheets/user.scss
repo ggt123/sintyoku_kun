@@ -1,3 +1,29 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-edit-container {
+  background-color: #949494;
+  width: 400px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+}
+
+.user-edit-title  {
+  margin-left: 10px;
+}
+
+.user-edit-textarea {
+  margin-left: 10px;
+}
+
+.user-edit-password {
+  margin-left: 10px;
+}
+
+.user-edit-submit-button {
+    height: 30px;
+}

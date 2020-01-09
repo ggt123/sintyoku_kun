@@ -1,58 +1,62 @@
-<div class="main topics-show">
-  <div class="container">
-    <div class="topics-show-item">
-      <p>
-        作成日時<%= @topic.created_at%>
-        <% if @topic.user_name %>
-        BY:<%= @topic.user_name %>
-        <% else %>
-        ID：<%= @topic.user_id%>
-        <% end %>
-      </p>
-      <p>
-        <%= @topic.title %>
-      </p>
-      <p>
-        <%= @topic.title_topic %>
-      </p>
-      <p>
-        この進捗のURL：
-        localhost:3000/topic/<%= @topic.topic_id %>
-      </p>
-        <p>_________________________________________________________________
-        </p>
-      <div class="topic-time">
-        <%= link_to("戻る", "/")  %>
-      <% if @named_user.present? then if @named_user.user_id == @topic.user_id %>
-          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>
+<!DOCTYPE html>
+<html>
+    <body>
+      <div class="container">
+        <div class="show-date-id">
+          作成日時<%= @topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+          <% if @topic.user_name %>
+          BY:<%= @topic.user_name %>
+          <% else %>
+          ID：<%= @topic.user_id%>
+          <% end %>
+        </div>
+
+        <div class="show-topic-title">
+          <%= @topic.title %>
+        </div>
+
+        <div class="show-topic-comment">
+          <%= @topic.title_topic %>
+        </div>
+
+        <div class="show-topic-url">
+          この進捗のURL：
+          <a href="https://aqueous-shore-99610.herokuapp.com/<%= @topic.topic_id %>">
+            https://aqueous-shore-99610.herokuapp.com/<%= @topic.topic_id %></a>
+        </div>
+      </div>
+
+        <%= link_to("戻る", "/")  %>　
+        <% if @named_user.present? then if @named_user.user_id == @topic.user_id %>
+          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>　
           <%= link_to("削除", "/topic/delete/#{@topic.topic_id}", {method: "post"}) %>
           <% end %>
         <% elsif @anonymous_user.present? then if @anonymous_user.user_id == @topic.user_id %>
-          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>
+          <%= link_to("編集", "/topic/edit/#{@topic.topic_id}", {method: "post"}) %>　
           <%= link_to("削除", "/topic/delete/#{@topic.topic_id}", {method: "post"}) %>
         <% end %>
-      <% end %>
-      </div>
-
+      <% end %><br>
       <%= link_to("コメントを投稿する", "/comment/create_comment/#{@topic.topic_id}", {method: "post"}) %>
 
-<% if @comments %>
-      <div class="main commentss-index">
-  <div class="container">
-    <% all_comments = @comments.reverse %>
-    <% all_comments.each do |comment| %>
-      <div class="comments-index-item">
-        [<%= @comments.index(comment) + 1 %>]
-        作成日時<%= comment.created_at%>
-        <% if comment.user_name %>
-        BY:<%= comment.user_name %>
-        <% else %>
-        ID：<%= comment.user_id%>
+      <div class="show-comment-container">
+        <% if @comments %>
+          <% all_comments = @comments.reverse %>
+          <% all_comments.each do |comment| %>
+
+          <div class="show-comment-date-id">
+            [<%= @comments.index(comment) + 1 %>]
+            作成日時<%= comment.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+            <% if comment.user_name %>
+            BY:<%= comment.user_name %>
+            <% else %>
+            ID：<%= comment.user_id%>
+            <% end %>
+          </div>
+
+          <div class="show-comment">
+            <%= simple_format(comment.topic) %>
+            </div>
+          <% end %>
         <% end %>
-        <p><%= simple_format(comment.topic) %></p>
       </div>
-    <% end %>
-  <% end %>
-   </div>
-  </div>
- </div>
+</html>

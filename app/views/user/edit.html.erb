@@ -1,25 +1,41 @@
-<div class="main users-edit">
-  <div class="container">
-    <h2 class="form-heading">ユーザー情報の編集</h2>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="user-edit-container">
+
+      <h2 class="user-edit-title">ユーザー情報の編集</h2>
     <%= form_tag("/user/edit_save/#{@named_user.user_id}", {method: "post"}) do %>
-    <div class="form users-form">
-      <div class="form-body">
-        <p>ユーザー名</p>
-        <textarea name="name"><%= @named_user.name %></textarea>
-        <p>メールアドレス</p>
-        <textarea name="email"><%= @named_user.email %></textarea>
-        <p>現在のパスワード</p>
-        <input type="password" name="old_password"></input>
-        <p>新しいパスワード</p>
-        <input type="password" name="new_password1"></input>
-        <p>新しいパスワードを再入力</p>
-        <input type="password" name="new_password2"></input>
-        <br>
-        <br>
-        <%= link_to("削除", "/user/user_destroy_question/#{@named_user.user_id}", {method: "post"})%>
-        <input type="submit" value="保存">
+      <div class="user-edit-textarea">
+        <p>
+        ユーザー名<br>
+        <textarea name="name" cols="45" rows="1"><%= @named_user.name %></textarea>
+        </p>
+        <p>
+        メールアドレス<br>
+        <textarea name="email" cols="45" rows="1"><%= @named_user.email %></textarea>
+        </p>
       </div>
+
+      <div class="user-edit-password">
+        <p>
+        現在のパスワード<br>
+        　<input type="password" name="old_password"></input>
+        </p>
+        <p>
+        新しいパスワード<br>
+        　<input type="password" name="new_password1"></input>
+        </p>
+        <p>
+        新しいパスワードを再入力<br>
+        　<input type="password" name="new_password2"></input>
+        </p>
+      </div>
+          <br>
+          <br>
+        　<input class="user-edit-submit-button" type="submit" value="変更を保存">
+        　<%= link_to("このアカウントを削除する", "/user/user_destroy_question/#{@named_user.user_id}", {method: "post"})%>　
+
+        <% end %>
     </div>
-    <% end %>
-  </div>
-</div>
+  </body>
+</html>

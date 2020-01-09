@@ -1,14 +1,15 @@
-<h1>コメントを投稿する</h1>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="user-edit-container">
+    <h2 class="user-edit-title">コメントを投稿する</h2>
 
-<div class="main posts-new">
-  <div class="container">
-<%= form_tag("/comment/save_comment/#{@topic_id}", {method: "post"}) do %>
-    <div class="form">
-      <div class="form-body">
-        <textarea name="topic" cols="50" rows="10"></textarea>
-        <input type="submit" value="投稿">
-      </div>
-    </div>
+      <%= form_tag("/comment/save_comment/#{@topic_id}", {method: "post"}) do %>
+        <textarea name="topic" cols="50" rows="7"></textarea>
+        <br>
+        　<input class="user-edit-submit-button" type="submit" value="投稿">
   <% end %>
+
   </div>
-</div>
+ </body>
+</html>

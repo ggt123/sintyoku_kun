@@ -137,4 +137,15 @@ class UserController < ApplicationController
            redirect_to("/")
       end
   end
+
+  def testlogin
+    @named_user = User.find_by(user_id: "ARLNMQVE")
+    if session[:user_id] = @named_user.session_id
+       flash[:notice] = "テストユーザーとしてログイン中です！"
+       redirect_to("/")
+    else
+       flash[:notice] = "問題が発生しました"
+       redirect_to("/")
+    end
+  end
 end

@@ -27,4 +27,7 @@ post  '/user/edit_save/:id' => 'user#edit_save'
 post  '/user/user_destroy_question/:id'  =>  'user#user_destroy_question'
 post  '/user_destroy/:id'   =>    'user#user_destroy'
 
+#テストログイン用
+get   '/testlogin'          =>    'user#testlogin'
+
 end

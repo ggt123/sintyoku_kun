@@ -1,22 +1,28 @@
-<div class="main topics-edit">
-  <div class="container">
-    <h1 class="form-heading">スレッドの編集</h1>
+<!DOCTYPE html>
+<html>
 
 <%= form_tag("/topic/save/#{@topic.topic_id}") do %>
-    <div class="form topics-form">
-      <div class="form-body">
-        <p>
-        タイトル<br>
-        <textarea name="title"><%= @topic.title %></textarea>
-        </p>
-        <p>
-        本文<br>
-        <textarea name="title_topic"><%= @topic.title_topic %></textarea>
-        </p>
-        <input type="submit" value="保存">
+  <body>
+    <div class="topic-edit-container">
+      <h1 class="topic-edit-header-title">　トピックの編集</h1>
+
+      <div class="topic-edit-title">
+        　タイトル
+        <textarea name="title" cols="55" rows="1"><%= @topic.title %></textarea>
       </div>
+
+    <div class="topic-edit-body">
+        　本文
+        　<textarea name="title_topic" cols="55" rows="7"><%= @topic.title_topic %></textarea>
     </div>
+
+      <div class="topic-edit-submit-button">
+        　<input class="topic-edit-submit-button" type="submit" value="保存">
+      </div>
+
+    </div>
+  </body>
 <% end %>
 
-  </div>
-</div>
+
+</html>

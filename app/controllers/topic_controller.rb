@@ -97,7 +97,7 @@ class TopicController < ApplicationController
 
       if @topic.save
          flash[:notice] = "トピックの編集を保存しました"
-         redirect_to("/")
+         redirect_to("/topic/#{@topic.topic_id}")
       else
          flash[:notice] = "エラーが発生しました"
          render("/topic/top")

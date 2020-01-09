@@ -1,24 +1,17 @@
-# README
+#進捗くん1号
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+簡単に作業進捗の共有ができるサービスです。ポートフォリオとして作成致しました。
+***
 
-Things you may want to cover:
+#使用技術
+- Ruby 2.5.1
+- Ruby on Rails 5.2.3
+- GitHub
+- Heroku
+***
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#機能一覧
+- トピック作成機能
+- コメント投稿機能
+- 匿名IDの割当て機能
+- ユーザー登録、ログイン機能

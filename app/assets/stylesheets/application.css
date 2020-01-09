@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.flash1, .flash2 {
+  background-color: #ff8383;
+}
+
+.flash3 {
+  background-color: #ff8383;
+}

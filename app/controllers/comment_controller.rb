@@ -49,8 +49,8 @@ before_action :check_account
       )
 
     if @comment.save
-       flash[:notice] = "コメントを作成しました"
-       redirect_to("/")
+       flash[:notice] = "コメントを投稿しました"
+       redirect_to("/topic/#{topic_id}")
     else
        flash[:notice] = "エラーが発生しました"
        redirect_to("/")

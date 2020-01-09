@@ -1,41 +1,59 @@
-<h1>進捗くん１号</h1>
-<br>
-<%if @named_user || @anonymous_user %>
-<% if @named_user %>
-ようこそ！　<%= @named_user.name %>　さん
-<% elsif @anonymous_user %>
-ようこそ！　<%= @anonymous_user.user_id %>　さん
-<% end %>
-<% else %>
-ようこそ！　匿名ユーザー　さん
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>進捗くん</title>
+    <link rel="stylesheet" href="/app/assets/stylesheets/topic.scss">
+  </head>
 
-<br>
-<p><%= link_to("新規トピックを作成", "/topic/create_topic") %></p>
-<p>_________________________________________________________________</p>
+  <header>
+    <h1>進捗くん１号</h1>
+  </header>
+    　　素早く進捗管理用のトピック（スレッド）の作成ができます<br>
+    　　トピック内のURLを相手に送って進捗を作業仲間と共有できます！
 
-<div class="main topics-index">
-  <div class="container">
-    <% @topics.each do |topic| %>
-      <div class="topics-index-item">
-        <p>
-        作成日時<%= topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
-        <% if topic.user_name %>
-        BY:<%= topic.user_name %>
-        <% else %>
-        ID：<%= topic.user_id%>
+  <body>
+    <div class="header">
+      <p>
+      <%if @named_user || @anonymous_user %>
+        <% if @named_user %>
+        ようこそ！　<%= @named_user.name %>　さん
+        <% elsif @anonymous_user %>
+        ようこそ！　<%= @anonymous_user.user_id %>　さん
         <% end %>
-        </p>
-        <p>
-          <% comment = Comment.where(topic_id: topic.topic_id)%>
-          <% comment_size = comment.size %>
-          <%= link_to "#{topic.title}(#{comment_size})", "/topic/#{topic.topic_id}" %>
+      <% else %>
+      </p>
+      <p>ようこそ！　匿名ユーザー　さん</p>
+      <% end %>
 
-        </p>
-        <p>
-                <%= topic.title_topic%>
-        </p>
+      <div class="link-to-crate-topic"><%= link_to("新規トピックを作成", "/topic/create_topic") %></div>
+    </div>
+
+    <div class="main-topics">
+      <div class="container">
+        <% @topics.each do |topic| %>
+
+          <div class="date-id">
+            作成日時<%= topic.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+            <% if topic.user_name %>
+            BY:<%= topic.user_name %>
+            <% else %>
+            ID：<%= topic.user_id%>
+            <% end %>
+          </div>
+
+            <% comment = Comment.where(topic_id: topic.topic_id)%>
+            <% comment_size = comment.size %>
+
+          <div class="topic-title">
+            <%= link_to "#{topic.title}(#{comment_size})", "/topic/#{topic.topic_id}" %>
+          </div>
+
+          <div class="topic-comment">
+            <%= topic.title_topic%>
+          </div>
+            <% end %>
       </div>
-    <% end %>
-  </div>
-</div>
+    </div>
+  </body>
+</html>

@@ -1,17 +1,27 @@
-<div class="main users-new">
-  <div class="container">
-    <h1><div class="form-heading">ログイン</div></h1>
-    <%= form_tag("/login_check") do %>
-    <div class="form users-form">
-      <div class="form-body">
-        <p>メールアドレス</p>
-        <input type="text" name="email" value="">
-        <p>パスワード</p>
-        <!-- 以下のinputタグにtype属性を指定してください -->
-        <input type="password" name="password" value="">
-        <input type="submit" value="ログイン">
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="user-edit-container">
+      <h1>ログイン</h1>
+      <%= form_tag("/login_check") do %>
+      <div class="user-edit-textarea">
+        <p>
+          メールアドレス<br>
+          <textarea name="email" cols="45" rows="1"></textarea>
+        </p>
       </div>
+
+      <div class="user-edit-password">
+        <p>
+          パスワード<br>
+        　<input type="password" name="password"></input>
+        </p>
+      </div>
+          <br>
+          <br>
+          　<input class="user-edit-submit-button" type="submit" value="ログイン">
+            　<%= link_to("テストログイン", "/testlogin")%>
+          <% end %>
     </div>
-    <% end %>
-  </div>
-</div>
+  </body>
+</html>

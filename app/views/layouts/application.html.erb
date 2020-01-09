@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SintyokuKun</title>
+    <meta charset="utf-8">
+    <title>進捗くん1号</title>
+    <link rel="stylesheet" href="app/assets/stylesheets/application.css">
+  </head>
+
+  <body>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <div class="header">
-
-      <%= link_to("進捗くん", "/")%>
+    <div class="header-top">
+      <%= link_to("進捗くん", "/")%>　
 
       <% if @named_user %>
-      <%= link_to("ユーザー", "/user")%>
-      <%= link_to("編集", "/edit") %>
-      <%= link_to("ログアウト", "/logout_question") %>
+      <%= link_to("ユーザー", "/user")%>　
+      <%= link_to("編集", "/edit") %>　
+      <%= link_to("ログアウト", "/logout_question") %>　
 
       <% else %>
-      <%= link_to("ユーザー", "/user")%>
-      <%= link_to("ログイン", "/login") %>
+      <%= link_to("ユーザー", "/user")%>　
+      <%= link_to("ログイン", "/login") %>　
       <% end %>
-
-
-
-
     </div>
-  </head>
 
-    <body>
       <% if flash[:notice] %>
-      <div class="flash">
+      <div class="flash1">
         メッセージ：<%= flash[:notice] %>
       </div>
       <% end %>
 
       <% if flash[:notice2] %>
-      <div class="flash">
+      <div class="flash2">
         ※<%= flash[:notice2] %>
       </div>
       <% end %>
 
-    <% if @topic %>
-      <% if @topic.errors.any? %>
-  <div id="error_explanation">
-    <%= @topic.errors.count %>件のエラーがあります:
-    <% @topic.errors.full_messages.each do |msg| %>
-    <%= msg %>
-    <% end %>
-  </div>
-<% end %>
-<% end %>
 
+        <% if @topic %>
+          <% if @topic.errors.any? %>
+      <div class="flash3">
+            <%= @topic.errors.count %>件のエラーがあります:
+            <% @topic.errors.full_messages.each do |msg| %>
+            <%= msg %>
+      </div>
+            <% end %>
+          <% end %>
+        <% end %>
 
       <%= yield %>
   </body>

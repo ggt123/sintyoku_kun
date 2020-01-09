@@ -1,3 +1,88 @@
 // Place all the styles related to the topic controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+header, body {
+  font-family: "Avenir Next";
+  height: 50px;
+}
+
+h1 {
+  padding: 0px 0px 0px 30px;
+}
+
+.header p {
+  padding: 0px 0px 0px 30px;
+}
+
+.container {
+  background-color: #949494;
+  width: 600px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.link-to-crate-topic {
+  border-bottom: 1px solid;
+  padding: 0px 0px 15px 30px;
+  margin-bottom: 10px
+}
+
+.date-id {
+  padding: 0px 0px 5px 10px;
+}
+
+.topic-title {
+  padding: 0px 0px 2px 20px;
+}
+
+.topic-comment {
+  padding: 0px 0px 5px 20px;
+  border-bottom: 1px solid;
+}
+
+.show-date-id, .show-topic-comment {
+  padding-top: 3px;
+  padding-bottom: 10px;
+}
+
+.show-topic-title {
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.show-topic-url {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+}
+
+.show-comment-container{
+  background-color: #fff;
+  height: 80px;
+  width:  600px;
+}
+
+.show-comment {
+  border-bottom: 1px solid;
+}
+
+ .topic-edit-container {
+   background-color: #949494;
+   width: 400px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   padding-top: 3px;
+   padding-bottom: 10px;
+   margin-left: 10px;
+ }
+
+ textarea {
+ border: 1px solid;
+ font-size: 13px;
+ margin-left: 10px;
+}
+
+.topic-edit-submit-button {
+  height: 30px;
+}
