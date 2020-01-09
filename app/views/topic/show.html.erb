@@ -16,13 +16,13 @@
         </div>
 
         <div class="show-topic-comment">
-          <%= @topic.title_topic %>
+          <%= simple_format(@topic.title_topic) %>
         </div>
 
         <div class="show-topic-url">
           この進捗のURL：
           <a href="https://aqueous-shore-99610.herokuapp.com/<%= @topic.topic_id %>">
-            https://aqueous-shore-99610.herokuapp.com/<%= @topic.topic_id %></a>
+            https://aqueous-shore-99610.herokuapp.com/topic/<%= @topic.topic_id %></a>
         </div>
       </div>
 
